@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Reminder Trigger Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<!-- ── Main App ── -->
+<p style="color: #ecac00;">nabi </p>
+<!--<p style="color:white;">Understand why reminders did or didn't send...</p>-->
+<p class="section-label">Concur support tool</p>
+<h1 style="font-size: 50px; font-weight: 500; margin-bottom: 5rem; color: #ecac00; padding-left: 2rem; padding-top: 2rem;">Email Trigger Calculator<br><p style="color: #d9d9d9; font-size: 24px;" >Understand why reminders did or didn't send...</p></h1>
+
+<div class="card">
+    <!--<p class="section-label">Concur support tool</p>-->
+    <!--<h1 style="text-align: center;">Email Trigger Calculator <br><p style="color: #d0d0cd; font-size: 14px; font-style: italic;" >Understand why reminders did or didn't send...</p></h1>-->
+
+  <p class="section-title">Condition 1</p>
+  <div class="grid-2">
+    <div>
+      <label for="refDate">Transaction Date</label>
+      <input type="date" id="refDate"/>
+    </div>
+    <div>
+      <label for="offset">X days</label>
+      <input type="number" id="offset" min="1" value="3" />
+    </div>
+  </div>
+
+  <label>Operator</label>
+  <div class="op-grid" id="opGroup">
+    <button class="op-btn" data-op="within-plus">
+      <span class="op-title">Within today + X</span>
+      <span class="op-sub">Due within the next X days</span>
+    </button>
+    <button class="op-btn" data-op="not-within-plus">
+      <span class="op-title">Not within today + X</span>
+      <span class="op-sub">More than X days before the due date</span>
+    </button>
+    <button class="op-btn" data-op="within-minus">
+      <span class="op-title">Within today &minus; X</span>
+      <span class="op-sub">Transaction is up to X days old</span>
+    </button>
+    <button class="op-btn" data-op="not-within-minus">
+      <span class="op-title">Not within today &minus; X</span>
+      <span class="op-sub">Transaction is over X days old</span>
+    </button>
+  </div>
+
+  <!-- Add second condition button -->
+  <button class="add-cond-btn" id="addCondBtn" onclick="showCondition2()">+ Add second condition</button>
+
+  <!-- Combinator + Condition 2 (hidden by default) -->
+  <div id="condition2Wrapper" class="cond2-wrapper">
+    <div class="combinator-row">
+      <span class="combinator-label">Logic</span>
+      <div class="combinator-group" id="combinatorGroup">
+        <button class="comb-btn selected" data-comb="and">AND</button>
+        <button class="comb-btn" data-comb="or">OR</button>
+      </div>
+      <button class="remove-cond-btn" onclick="hideCondition2()" title="Remove second condition">&times;</button>
+    </div>
+
+    <p class="section-title" style="margin-top:1rem;">Condition 2</p>
+    <div class="grid-2">
+      <div>
+        <label for="refDate2">Transaction Date</label>
+        <input type="date" id="refDate2"/>
+      </div>
+      <div>
+        <label for="offset2">X days</label>
+        <input type="number" id="offset2" min="1" value="3" />
+      </div>
+    </div>
+
+    <label>Operator</label>
+    <div class="op-grid" id="opGroup2">
+      <button class="op-btn" data-op="within-plus">
+        <span class="op-title">Within today + X</span>
+        <span class="op-sub">Due within the next X days</span>
+      </button>
+      <button class="op-btn" data-op="not-within-plus">
+        <span class="op-title">Not within today + X</span>
+        <span class="op-sub">More than X days before the due date</span>
+      </button>
+      <button class="op-btn" data-op="within-minus">
+        <span class="op-title">Within today &minus; X</span>
+        <span class="op-sub">Transaction is up to X days old</span>
+      </button>
+      <button class="op-btn" data-op="not-within-minus">
+        <span class="op-title">Not within today &minus; X</span>
+        <span class="op-sub">Transaction is over X days old</span>
+      </button>
+    </div>
+  </div>
+
+  <hr class="divider" />
+  <p class="section-title">Frequency</p>
+
+  <div class="freq-grid" id="freqGroup">
+    <button class="freq-btn" data-freq="daily-weekdays">
+      <span class="freq-title">Daily (weekdays only)</span>
+      <span class="freq-sub">Mon &ndash; Fri only</span>
+    </button>
+    <button class="freq-btn" data-freq="daily">
+      <span class="freq-title">Daily</span>
+      <span class="freq-sub">Every day including weekends</span>
+    </button>
+    <button class="freq-btn" data-freq="every-x">
+      <span class="freq-title">Every X days</span>
+      <span class="freq-sub">Custom interval</span>
+    </button>
+    <button class="freq-btn" data-freq="specific-days">
+      <span class="freq-title">Specific days of month</span>
+      <span class="freq-sub">Pick calendar days</span>
+    </button>
+    <button class="freq-btn" data-freq="once" style="grid-column:span 2;">
+      <span class="freq-title">Once when condition is met</span>
+      <span class="freq-sub">Triggers only on the first qualifying day</span>
+    </button>
+  </div>
+
+  <div class="freq-extra" id="extraEveryX">
+    <label for="intervalDays">Repeat every how many days?</label>
+    <input type="number" id="intervalDays" min="1" value="2" style="margin-top:6px;width:140px; background-color:#ecac00; border:#ffffff;" />
+  </div>
+  <div class="freq-extra" id="extraSpecificDays">
+    <label>Select days of the month</label>
+    <div class="day-picker" id="dayPicker"></div>
+  </div>
+
+  <hr class="divider" />
+  <button class="calc-btn" onclick="calculate()">Calculate</button>
+
+  <div class="result" id="result">
+    <p class="result-label">Reminder triggers starting from</p>
+    <p class="trigger-date" id="triggerDate"></p>
+    <p class="cond-summary" id="condSummary"></p>
+    
+    <div class="schedule-block" id="scheduleBlock">
+      <p class="schedule-label">Upcoming trigger dates</p>
+      <ul class="schedule-list" id="scheduleList"></ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Created by Armina
+    <br><br>
+    <button class="suggest-btn" onclick="openSuggestModal()">We'd love your feedback and suggestions!</button>
+  </div>
+</div>
+
+<!-- Suggestion Modal -->
+<div class="modal-overlay" id="suggestModal" onclick="closeSuggestModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">Share your thoughts!</span>
+      <button class="modal-close" onclick="closeSuggestModal()">&times;</button>
+    </div>
+    <p class="modal-desc">Found a bug or have an idea to improve the tool? Let us know — every suggestion helps!</p>
+    <label class="modal-label" for="suggestText">Your message</label>
+    <textarea id="suggestText" class="modal-input" rows="5" placeholder="Type your suggestion or bug report here..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeSuggestModal()">Cancel</button>
+      <button class="btn-primary" onclick="sendSuggestion()">Send</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

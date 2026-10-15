@@ -1,0 +1,236 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+  font-family: -apple-system, BlinkMacSystemFont, "DM Sans", sans-serif, 'DM Mono', monospace;
+  background: #0a0a0a;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;        /* stack title and card vertically */
+  align-items: flex-start;       /* align to left */
+  justify-content: flex-start;
+  padding: 2rem 1rem;
+  }
+
+  .card {
+  background: #141414;
+  border: 0.5px solid #333333;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 620px;
+  align-self: center;            /* center the card horizontally */
+  margin-top: 1rem;
+  }
+
+  .section-label {
+     font-size: 11px; 
+     color: #888; 
+     text-transform: uppercase; 
+     letter-spacing: 0.08em; 
+     font-weight: 500; 
+     margin-bottom: 1.5rem; 
+  }
+  
+  h1 { 
+    font-size: 28px; 
+    font-weight: 500; 
+    margin-bottom: 3.5rem;
+    color: #ecac00; 
+  }
+  
+  .divider { 
+    border: none; 
+    border-top: 0.5px solid #333333; 
+    margin: 1.5rem 0; 
+  }
+  
+  .section-title { 
+    font-size: 12px; 
+    font-weight: 500; 
+    color: #ecac00; 
+    text-transform: uppercase; 
+    letter-spacing: 0.07em; 
+    margin-bottom: 1rem; 
+  }
+  
+  .grid-2 { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 1.25rem; 
+  }
+
+  label { 
+    font-size: 12px; 
+    color: #ffffff; 
+    display: block; 
+    margin-bottom: 6px; 
+  }
+
+    input[type="date"], input[type="number"], input[type="password"], select {
+      width: 100%; padding: 8px 10px; border: 0.5px; border-radius: 8px;
+      font-size: 14px; color: #ffffff; background: #1e1e1e; color-scheme: dark; outline: none; transition: border-color 0.15s;
+    }
+    input[type="date"]:focus, input[type="number"]:focus, input[type="password"]:focus, select:focus {border-color: #999; }
+
+    .op-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.5rem; }
+    .op-btn {
+      padding: 10px 12px; border-radius: 8px; border: 0.5px solid #333333;
+      background: transparent; font-size: 13px; cursor: pointer; text-align: left;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .op-btn:hover { background: #ecac00; }
+    .op-btn.selected { background: #ecac00; border-color: #ecac00; }
+    .op-btn .op-title { font-weight: 500; display: block; color: #ffffff; margin-bottom: 2px; }
+    .op-btn .op-sub { font-size: 11px; color: #d9d9d9; font-style: italic;}
+
+    .freq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1rem; }
+    .freq-btn {
+      padding: 10px 12px; border-radius: 8px; border: 0.5px solid #333333;
+      background: transparent; font-size: 13px; cursor: pointer; text-align: left;
+      transition: background 0.15s, border-color 0.15s; color: #ffffff;
+    }
+    .freq-btn:hover { background: #ecac00; }
+    .freq-btn.selected { background: #ecac00; border-color: #ecac00; }
+    .freq-btn .freq-title { font-weight: 500; display: block; margin-bottom: 2px; }
+    .freq-btn .freq-sub { font-size: 11px; color: #d9d9d9; font-style: italic;}
+
+    .freq-extra { display: none; margin-bottom: 1.25rem; padding: 12px; background: #1e1e1e; border-radius: 8px; border: 0.5px solid #ecac00; }
+    .freq-extra.visible { display: block; }
+
+    .day-picker { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .day-chip {
+      padding: 4px 10px; border-radius: 99px; border: 0.5px solid #333333;
+      background: #1e1e1e; font-size: 12px; cursor: pointer; color: #ecac00;
+      transition: background 0.15s, border-color 0.15s; user-select: none;
+    }
+    .day-chip.selected { background: #ecac00; color: #0a0a0a; border-color: #ecac00; }
+
+    .calc-btn {
+      width: 100%; padding: 10px; border-radius: 8px; border: 0.5px solid #ecac00;
+      background: #1e1e1e; font-size: 14px; font-weight: 500; cursor: pointer;
+      margin-bottom: 1.5rem; transition: background 0.15s; color: #ecac00;
+    }
+    .calc-btn:hover { color:#1f2937; background: #ecac00; border-color: #ecac00;}
+
+    .result { display: none; border: 0.5px solid #333333; border-radius: 12px; background: #1e1e1e; padding: 1.25rem; }
+    .result-label { font-size: 11px; color: #ffffff; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .trigger-date { font-size: 22px; font-weight: 500; color: #ffffff; margin-bottom: 10px; }
+    .badge { display: inline-block; font-size: 12px; padding: 3px 12px; border-radius: 99px; margin-bottom: 12px; }
+    .badge.met { background: #eaf3de; color: #3b6d11; }
+    .badge.not-met { background: #fcebeb; color: #a32d2d; }
+    .explanation { font-size: 13px; color: #ffffff; line-height: 1.6; border-top: 0.5px solid #333333; padding-top: 12px; margin-bottom: 0; }
+    .schedule-block { margin-top: 12px; padding-top: 12px; border-top: 0.5px solid #333333; }
+    .schedule-label { font-size: 11px; color: #ecac00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .schedule-list { list-style: none; padding: 0; margin: 0; }
+    .schedule-list li { font-size: 13px; color: #ffffff; padding: 4px 0; border-bottom: 0.5px; display: flex; align-items: center; gap: 8px; }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-list li .dot { width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; }
+
+    /* ── Add condition button ── */
+    .add-cond-btn {
+      display: block; width: 100%; padding: 8px; border-radius: 8px;
+      border: 0.5px dashed #555; background: transparent; font-size: 13px;
+      color: #aaa; cursor: pointer; margin-bottom: 1rem; transition: border-color 0.15s, color 0.15s;
+    }
+    .add-cond-btn:hover { border-color: #ecac00; color: #ecac00; }
+
+    /* ── Condition 2 wrapper ── */
+    .cond2-wrapper { display: none; border: 0.5px solid #ecac00; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+    .cond2-wrapper.visible { display: block; }
+
+    /* ── Combinator row ── */
+    .combinator-row { display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; }
+    .combinator-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; flex-shrink: 0; }
+    .combinator-group { display: flex; gap: 4px; }
+    .comb-btn {
+      padding: 4px 14px; border-radius: 99px; border: 0.5px solid #555;
+      background: transparent; font-size: 12px; font-weight: 500; color: #aaa; cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .comb-btn:hover { border-color: #ecac00; color: #ecac00; }
+    .comb-btn.selected { background: #ecac00; border-color: #ecac00; color: #0a0a0a; }
+    .remove-cond-btn {
+      margin-left: auto; background: transparent; border: none; color: #666; font-size: 18px;
+      cursor: pointer; line-height: 1; padding: 0 4px; transition: color 0.15s;
+    }
+    .remove-cond-btn:hover { color: #e07070; }
+
+    /* ── Condition summary line in result ── */
+    .cond-summary { font-size: 11px; color: #aaa; margin-bottom: 10px; letter-spacing: 0.03em; }
+
+    .footer { margin-top: 1.5rem; padding-top: 1rem; border-top: 0.5px solid #333333; font-size: 11px; color: #aaa; text-align: center; letter-spacing: 0.03em; }
+    .footer a { color: #aaa; text-decoration: none; }
+    .footer a:hover { color: #666; }
+    .footer .dash-trigger { color: #ddd; font-size: 10px; cursor: pointer; }
+    .footer .dash-trigger:hover { color: #aaa; }
+
+    /* ── Modal shared ── */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .suggest-btn {
+      background: transparent; border: none; color: #aaa; font-size: 11px;
+      padding: 0; cursor: pointer; transition: color 0.15s; text-decoration: underline; text-underline-offset: 3px;
+    }
+    .suggest-btn:hover { color: #ecac00; }
+
+    textarea.modal-input { resize: vertical; min-height: 100px; font-family: inherit; }
+    .modal-box {
+      background: #141414; border: 0.5px solid #333333; border-radius: 12px;
+      padding: 1.75rem; width: 100%; max-width: 460px; margin: 1rem;
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+    .modal-title { font-size: 15px; font-weight: 500; color: #ecac00; }
+    .modal-close { background: transparent; border: none; color: #aaa; font-size: 20px; cursor: pointer; line-height: 1; padding: 0; }
+    .modal-close:hover { color: #ffffff; }
+    .modal-desc { font-size: 12px; color: #aaa; margin-bottom: 1rem; line-height: 1.6; }
+    .modal-label { font-size: 12px; color: #ffffff; display: block; margin-bottom: 6px; }
+    .modal-input { width: 100%; padding: 8px 10px; border: 0.5px solid #333333; border-radius: 8px; font-size: 14px; color: #ffffff; background: #1e1e1e; outline: none; margin-bottom: 1rem; }
+    .modal-input:focus { border-color: #ecac00; }
+    .modal-actions { display: flex; gap: 8px; }
+    .btn-primary { flex: 1; padding: 10px; border-radius: 8px; border: 0.5px solid #ecac00; background: #1e1e1e; font-size: 14px; font-weight: 500; cursor: pointer; color: #ecac00; transition: background 0.15s; }
+    .btn-primary:hover { background: #ecac00; color: #0a0a0a; }
+    .btn-secondary { padding: 10px 16px; border-radius: 8px; border: 0.5px solid #333333; background: transparent; font-size: 14px; cursor: pointer; color: #aaa; transition: border-color 0.15s, color 0.15s; }
+    .btn-secondary:hover { border-color: #ffffff; color: #ffffff; }
+    .error-msg { font-size: 12px; color: #a32d2d; margin-bottom: 10px; display: none; }
+
+    /* ── Dashboard ── */
+    .dash-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #0a0a0a; z-index: 200; overflow-y: auto; padding: 2rem 1rem;
+    }
+    .dash-card {
+      background: #141414; border: 0.5px solid #333333; border-radius: 12px;
+      padding: 2rem; width: 100%; max-width: 680px; margin: 0 auto;
+    }
+    .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; }
+    .dash-title { font-size: 18px; font-weight: 500; color: #ecac00; }
+    .close-dash-btn {
+      background: transparent; border: 0.5px solid #d0d0cd; color: #888; font-size: 12px;
+      padding: 5px 14px; border-radius: 99px; cursor: pointer; transition: border-color 0.15s, color 0.15s;
+    }
+    .close-dash-btn:hover { border-color: #999; color: #333; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 1.75rem; }
+    .stat-card { background: #1e1e1e; border: 0.5px solid #333333; border-radius: 10px; padding: 1rem; }
+    .stat-label { font-size: 11px; color: #ecac00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .stat-value { font-size: 28px; font-weight: 500; color: #ffffff; }
+    .stat-sub { font-size: 11px; color: #aaa; margin-top: 4px; }
+    .chart-section { margin-bottom: 1.5rem; }
+    .chart-title { font-size: 12px; color: #ecac00; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1rem; font-weight: 500; }
+    .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .bar-label { font-size: 12px; color: #666; width: 165px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar-track { flex: 1; background: #f0f0ed; border-radius: 4px; height: 8px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; background: #ecac00; transition: width 0.5s ease; }
+    .bar-count { font-size: 12px; color: #ecac00; width: 28px; text-align: right; flex-shrink: 0; }
+    .reset-btn {
+      background: transparent; border: 0.5px solid #e0e0dd; color: #bbb; font-size: 11px;
+      padding: 5px 12px; border-radius: 6px; cursor: pointer; transition: border-color 0.15s, color 0.15s; margin-top: 0.5rem;
+    }
+    .reset-btn:hover { border-color: #e07070; color: #a32d2d; }
+    .last-used { font-size: 11px; color: #bbb; margin-top: 1rem; text-align: right; }
+    .empty-state { font-size: 13px; color: #bbb; text-align: center; padding: 1.5rem 0; }
